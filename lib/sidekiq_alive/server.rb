@@ -3,7 +3,7 @@ require_relative './config'
 module SidekiqAlive
   class Server < Sinatra::Base
     # set :port, SidekiqAlive.config.port
-    set :server, :thin
+    set :server, :webrick
     set :bind, '0.0.0.0'
 
     class << self
