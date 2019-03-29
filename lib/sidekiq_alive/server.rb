@@ -4,7 +4,7 @@ module SidekiqAlive
   class Server < Sinatra::Base
     set :port, SidekiqAlive.config.port
     set :bind, '0.0.0.0'
-    set :server, :thin
+    set :server, :webrick
 
     # class << self
     #   def start
