@@ -18,7 +18,6 @@ module SidekiqAlive
           # sa::Server.start
           # Thread.start { sa::Server.new }
 
-          sa.logger.info(successful_startup_text)
           Thread.new do
             begin
               sa::Server.run!
@@ -26,7 +25,8 @@ module SidekiqAlive
               $stderr << e.message
               $stderr << e.backtrace.join("\n")
             end
-          end.join
+          end
+          sa.logger.info(successful_startup_text)
         end
       end
 
