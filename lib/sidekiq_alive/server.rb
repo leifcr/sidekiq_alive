@@ -10,11 +10,6 @@ module SidekiqAlive
         set :port, SidekiqAlive.config.port
         Thread.start { run! }
       end
-
-      # def quit!
-      #   super
-      #   # exit
-      # end
     end
 
     get '/' do
