@@ -2,21 +2,20 @@ require 'sinatra/base'
 require_relative './config'
 module SidekiqAlive
   class Server < Sinatra::Base
-    set :port, SidekiqAlive.config.port
     set :bind, '0.0.0.0'
     set :server, :webrick
 
-    # class << self
-    #   def start
-    #     set :port, SidekiqAlive.config.port
-    #     Thread.start { run! }
-    #   end
+    class << self
+      def start
+        set :port, SidekiqAlive.config.port
+        Thread.start { run! }
+      end
 
-    #   # def quit!
-    #   #   super
-    #   #   # exit
-    #   # end
-    # end
+      def quit!
+        super
+        exit
+      end
+    end
 
     get '/' do
       if SidekiqAlive.alive?
