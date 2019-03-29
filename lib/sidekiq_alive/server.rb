@@ -10,10 +10,10 @@ module SidekiqAlive
         Thread.start { run! }
       end
 
-      def quit!
-        super
-        exit
-      end
+      # def quit!
+      #   super
+      #   # exit
+      # end
     end
 
     get '/' do
