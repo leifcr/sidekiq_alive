@@ -25,6 +25,5 @@ module SidekiqAlive
       @preferred_queue = :sidekiq_alive
       @delay_between_async_other_host_queue = 2 # in seconds
     end
-
   end
 end
