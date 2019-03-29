@@ -1,5 +1,5 @@
-require "sinatra/base"
-require_relative "./config"
+require 'sinatra/base'
+require_relative './config'
 module SidekiqAlive
   class Server < Sinatra::Base
     set :bind, '0.0.0.0'
@@ -19,7 +19,7 @@ module SidekiqAlive
     get '/' do
       if SidekiqAlive.alive?
         status 200
-        body "Alive!"
+        body 'Alive!'
       else
         response = "Can't find the alive key"
         SidekiqAlive.logger.error(response)
