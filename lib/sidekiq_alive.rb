@@ -16,7 +16,7 @@ module SidekiqAlive
           sa.store_alive_key
           sa::Worker.perform_async(hostname)
           # sa::Server.start
-          Thread.new
+          Thread.new do
             begin
               sa::Server.run!
             rescue StandardError => e
