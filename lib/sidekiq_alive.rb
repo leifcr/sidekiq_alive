@@ -16,6 +16,9 @@ module SidekiqAlive
           sa.store_alive_key
           sa::Worker.perform_async(hostname)
           # sa::Server.start
+          # Thread.start { sa::Server.new }
+
+          sa.logger.info(successful_startup_text)
           Thread.new do
             begin
               sa::Server.run!
@@ -23,10 +26,7 @@ module SidekiqAlive
               $stderr << e.message
               $stderr << e.backtrace.join("\n")
             end
-          end
-          # Thread.start { sa::Server.new }
-
-          sa.logger.info(successful_startup_text)
+          end.join
         end
       end
 
