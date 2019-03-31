@@ -3,14 +3,16 @@ require_relative './config'
 module SidekiqAlive
   class Server < Sinatra::Base
     set :bind, '0.0.0.0'
-    set :server, :webrick
+    # set :server, :webrick
+    set :port, SidekiqAlive.config.port
 
-    class << self
-      def start
-        set :port, SidekiqAlive.config.port
-        Thread.start { run! }
-      end
-    end
+    # # class << self
+    #   def start
+    #     fork do 
+    #       SideKiqAlive::Server.run!
+    #     end
+    #   end
+    # end
 
     get '/' do
       if SidekiqAlive.alive?
